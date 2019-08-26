@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+
+	<head>
+    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+		<title>Save Directory</title>
+		
+	</head>
+	
+	
+	<body>
+	
+		<div class="container">
+		
+			<h3> Account Directory </h3>
+			<hr>
+			
+			<p class="h4 mb-4">Save Account </p>
+			
+			<form action="#" th:action="@{/accounts/save}"
+			th:object="${account}" method="POST">
+				
+				<!--  Add a hidden form to handle update -->
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{user.id}" />
+				
+				<input type="text" th:field="*{description}"
+				  	class="form-control mb-4 col-4" placeholder="Description" />
+				  	
+	  			<input type="number" min="0" max="10000" th:field="*{totalAmount}"
+				  	class="form-control mb-4 col-4" placeholder="Amount" />
+	
+			
+				<button type="submit" class="btn btn-info col-2"> Save </button>
+			
+			
+			</form>			
+		
+			<hr>
+			<a th:href="@{/accounts/list}">Back to accounts List</a>
+		</div>
+	
+	</body>
+	
+	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

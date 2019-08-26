@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+
+	<head>
+    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+		<title>Welcome</title>
+		
+	</head>
+	
+	<body>
+	
+		<div class="container">
+		
+			<h3> Welcome - Please LogIn or Sign Up </h3>
+			<hr>
+			
+			<form action="#" th:action="@{/signup}"
+			th:object="${user}" method="POST">			
+				<button type="submit" class="btn btn-success col-2"> Sign Up </button>
+			</form>
+			
+			<hr>
+			
+		
+			
+			<form action="#" th:action="@{/login}"
+			th:object="${user}" method="POST">
+				
+			<div th:if="${logInError==true}" align="center" >
+			   <label style="color:red">Either the email or the password are incorrect. Try again or SignUp.</label> 
+			</div>
+				<!--  Add a hidden form to handle update -->
+			<div style="width:100%">
+				
+				<div align="center"  style="width:60%">
+					<p class="h4 mb-4">LogIn</p>
+		  			<input type="email" th:field="*{email}"
+					  	class="form-control mb-4 col-4" placeholder="Email" />
+					  	
+				  	<input type="password" th:field="*{password}"
+					  	class="form-control mb-4 col-4" placeholder="Password" />
+				
+					<div align="right">
+						<button style="width:50%" type="submit" class="btn btn-info col-2" > LogIn </button>
+					</div>
+				</div>
+			</div>
+			</form>
+			
+		
+			<hr>
+		</div>
+	
+	</body>
+	
+	
+</html>

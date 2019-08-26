@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+
+	<head>
+    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+		<title>Perform Operation</title>
+	</head>
+	
+	<body>
+		<div class="container">
+		
+			<h3> Account Directory </h3>
+			<hr>
+			
+			<form action="#" th:action="${deposit} ? @{/accounts/saveDeposit} : @{/accounts/saveWithdrawal}" 
+			th:object="${account}" method="POST">
+			<div th:if="${deposit}">
+				<p id="isDeposit"  class="h4 mb-4">Deposit </p>
+			</div>
+			<div th:unless="${deposit}">
+				<p id="isWithdrawal" class="h4 mb-4">Withdrawal </p>
+			</div>
+			
+				
+				<!--  Add a hidden form to handle update -->
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="${deposit}" id="deposit" />
+				<input type="hidden" th:field="*{user.id}" />
+				
+				<input readonly type="text" th:field="*{description}"
+				  	class="form-control mb-4 col-4" placeholder="Description" />
+				  	
+	  			<input id="totalAmount" readonly type="text" th:field="*{totalAmount}"
+				  	class="form-control mb-4 col-4" placeholder="Amount" />
+			
+				<input id="modifierValue"  type="number" min="0" max="${account.totalAmount}" th:field="*{modifierValue}" 
+				  	class="form-control mb-4 col-4" placeholder="Amount" />
+
+				<button id="btnSave" type="submit" class="btn btn-info col-2"> Save </button>
+				
+			<div id="AmountError"  >
+			<hr>
+			   <label style="color:red">Incorrect Amount, please check the amount to withdraw.</label> 
+			</div>
+									  	
+				<script th:inline="javascript">
+			        var modifier = document.getElementById("modifierValue");
+			        var total = document.getElementById("totalAmount");
+			        var btnSave = document.getElementById("btnSave");
+			        var deposit = document.getElementById("isDeposit");
+			      	var amountError = document.getElementById("AmountError");
+			      	amountError.hidden=true;
+			        modifier.onchange = function(){
+			        	  if((total.value - modifier.value) < 0 && (deposit == null)){
+			        		  amountError.hidden = false;
+					        	btnSave.disabled = true;
+					        	setTimeout(function(){
+					        		location.reload();
+					        	}, 2000);
+					        }else{
+					        	btnSave.disabled = false;
+						    }
+				      }
+			      
+					
+			    </script>
+			</form>	
+				
+			<hr>
+		</div>
+	
+	</body>
+	
+</html>

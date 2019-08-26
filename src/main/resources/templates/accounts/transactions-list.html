@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+
+	<head>
+    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+		<title>Transactions Directory</title>
+		
+	</head>
+	
+	
+	<body>
+		<div class="container">
+				<h3>Transactions Directory</h3>
+			
+				<hr>
+				
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Amount</th>
+						</tr>
+					</thead>	
+					<tbody>
+						<tr th:each="tempTransaction : ${account.transactions}" >
+							<td th:text="${tempTransaction.transactionDate}" />
+							<td th:text="${tempTransaction.type}" />
+							<td th:text="${tempTransaction.amount}" />
+						</tr>
+					</tbody>
+		
+				</table>
+			</div>
+	</body>
+	
+	
+	
+	
+	</html>

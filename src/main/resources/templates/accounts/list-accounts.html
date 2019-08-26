@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+
+	<head>
+    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+		<title>Account Directory</title>
+		
+	</head>
+	
+
+	<body>
+		<div class="container">
+			<h3>Account Directory</h3>
+		
+			<hr>
+			
+			<!-- Add a button -->
+			<a th:href="@{/accounts/showFormForAdd}"
+				class="btn btn-primary btn-sm mb-3">
+				Add Account
+			</a>
+			<!-- Add a button -->
+			<a th:href="@{/users/showFormForUpdate(userId=${user.id})}"
+				class="btn btn-primary btn-sm mb-3">
+				Update Personal Data
+			</a>
+			
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Action</th>
+					</tr>
+				</thead>	
+				<tbody>
+					<tr th:each="tempAccount : ${accounts}" >
+						<td th:text="${tempAccount.description}" />
+						<td th:text="${tempAccount.totalAmount}" />
+						<td > 
+							<a th:href="@{/accounts/showFormForTransactionsList(accountId=${tempAccount.id})}"
+								class="btn btn-info btn-sm"> 
+							See Transactions
+							</a>
+							<a th:href="@{/accounts/showFormForTransactions(accountId=${tempAccount.id}, deposit = true)}"
+								class="btn btn-success btn-sm">
+							Deposit
+							</a>
+							<a th:href="@{/accounts/showFormForTransactions(accountId=${tempAccount.id}, deposit = false)}"
+								class="btn btn-secondary btn-sm" >
+							Withdraw
+							</a>
+						</td>
+					</tr>
+				</tbody>
+	
+			</table>
+		</div>
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
